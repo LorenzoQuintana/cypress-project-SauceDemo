@@ -1,4 +1,4 @@
-describe('SauceDemo Tests', () => {
+describe("Login (Test Suite)", () => {
     beforeEach(() => {
       // Visitar la página https://www.saucedemo.com/
       cy.visit('/');
@@ -30,8 +30,8 @@ describe('SauceDemo Tests', () => {
     //--------------------------------------------------------------------------------------------------------
     it('Validate a user can not log into the page with invalid credentials', () => {
       // Ingresar credenciales no válidas en los elementos de usuario y contraseña
-      cy.get('#user-name').type('invalid_user');
-      cy.get('#password').type('invalid_password');
+      cy.get('#user-name').type('standard_use');
+      cy.get('#password').type('secret_sauce');
       cy.get('#login-button').click();
   
       // Validar que un mensaje de error se despliega con el mensaje esperado
