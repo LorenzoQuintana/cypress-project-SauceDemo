@@ -1,5 +1,7 @@
 const Credentials = require("../../credentials");
+const SampleProduct = require("../../sampleProduct");
 const LoginPage = require("../../pages/loginPage");
+const CartPage = require("../../pages/cartPage");
 
 describe("Cart (Test Suite)", () => {
   beforeEach(() => {
@@ -15,42 +17,42 @@ describe("Cart (Test Suite)", () => {
   //-------------------------------------------------------------------------------------------------------
   it("Validate cart is empty initially", () => {
     // Navigate to the cart page
-    cy.get(".shopping_cart_link").click();
+    CartPage.navigateToCart();
     // Validate the cart is empty
-    cy.get(".cart_item").should("not.exist");
+    CartPage.elements.cartItems().should("not.exist");
   });
 
   //-------------------------------------------------------------------------------------------------------
   it("Add item to cart and validate", () => {
     // Add the Sauce Labs Backpack product to the cart
-    cy.get("#add-to-cart-sauce-labs-backpack").click();
+    CartPage.addItemToCart("addToCartItem1Button");
     // Navigate to the cart page
-    cy.get(".shopping_cart_link").click();
+    CartPage.navigateToCart();
     // Validate the product is in the cart
-    cy.get(".cart_item").should("have.length", 1);
-    cy.get(".inventory_item_name").should("contain", "Sauce Labs Backpack");
+    CartPage.elements.cartItems().should("have.length", 1);
+    CartPage.elements.itemName().should("contain", SampleProduct.validProduct.name);
   });
 
   //-------------------------------------------------------------------------------------------------------
   it("Remove item from cart and validate", () => {
     // Add the Sauce Labs Backpack product to the cart
-    cy.get("#add-to-cart-sauce-labs-backpack").click();
+    CartPage.addItemToCart("addToCartItem1Button");
     // Navigate to the cart page
-    cy.get(".shopping_cart_link").click();
+    CartPage.navigateToCart();
     // Remove the product from the cart
-    cy.get("#remove-sauce-labs-backpack").click();
+    CartPage.removeItemFromCart("removeItem1Button");
     // Validate the cart is empty
-    cy.get(".cart_item").should("not.exist");
+    CartPage.elements.cartItems().should("not.exist");
   });
 
   //-------------------------------------------------------------------------------------------------------
   it("Validate checkout process up to information page", () => {
     // Add the Sauce Labs Backpack product to the cart
-    cy.get("#add-to-cart-sauce-labs-backpack").click();
+    CartPage.addItemToCart("addToCartItem1Button");
     // Navigate to the cart page
-    cy.get(".shopping_cart_link").click();
+    CartPage.navigateToCart();
     // Click on the checkout button
-    cy.get("#checkout").click();
+    CartPage.proceedToCheckout();
     // Validate navigation to checkout-step-one.html
     cy.url().should("include", "/checkout-step-one.html");
   });

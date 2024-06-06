@@ -4,12 +4,15 @@ class Credentials {
     password: "secret_sauce",
     firstName: "Lorenzo",
     lastName: "Quintana",
-    postalCode: "47140",
+    postalCode: "47140"
   };
 
   static invalidUser = {
     username: "standard_use",
     password: "secret_sauce",
+    firstName: "Lorenzo",
+    lastName: "Quintana",
+    postalCode: "47140"
   };
 }
 
