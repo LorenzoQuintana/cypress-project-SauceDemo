@@ -1,4 +1,5 @@
 const Credentials = require('../../credentials');
+const ErrorMessages = require('../../errorMessages');
 const SampleProduct = require('../../sampleProduct');
 const LoginPage = require('../../pages/loginPage');
 const CheckoutPage = require('../../pages/checkoutPage');
@@ -39,7 +40,7 @@ describe("Checkout (Test Suite)", () => {
     CheckoutPage.continueCheckout();
     // Validate error message
     CheckoutPage.elements.errorMessage().should('be.visible')
-        .and('contain', 'Error: First Name is required');
+        .and('contain', ErrorMessages.sampleMessages.FirstNameRequired);
   });
 
   //-------------------------------------------------------------------------------------------------------
@@ -52,7 +53,7 @@ describe("Checkout (Test Suite)", () => {
     CheckoutPage.continueCheckout();
     // Validate error message
     CheckoutPage.elements.errorMessage().should('be.visible')
-        .and('contain', 'Error: Last Name is required');
+        .and('contain', ErrorMessages.sampleMessages.LastNameRequired);
   });
 
   //-------------------------------------------------------------------------------------------------------
@@ -65,6 +66,6 @@ describe("Checkout (Test Suite)", () => {
     CheckoutPage.continueCheckout();
     // Validate error message
     CheckoutPage.elements.errorMessage().should('be.visible')
-        .and('contain', 'Error: Postal Code is required');
+        .and('contain', ErrorMessages.sampleMessages.PCRequired);
   });
 });

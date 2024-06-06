@@ -1,4 +1,5 @@
 const Credentials = require("../../credentials");
+const ErrorMessages = require('../../errorMessages');
 const LoginPage = require("../../pages/loginPage");
 
 describe("Login (Test Suite)", () => {
@@ -42,7 +43,7 @@ describe("Login (Test Suite)", () => {
       .should("be.visible")
       .and(
         "contain",
-        "Epic sadface: Username and password do not match any user in this service"
+        ErrorMessages.sampleMessages.EpicSadFaceAll
       );
   });
 
@@ -55,7 +56,7 @@ describe("Login (Test Suite)", () => {
     // Validate that an error message is displayed
     cy.get(".error-message-container")
       .should("be.visible")
-      .and("contain", "Epic sadface: Password is required");
+      .and("contain", ErrorMessages.sampleMessages.EpicSadFacePass);
   });
 
   //-------------------------------------------------------------------------------------------------------
@@ -67,6 +68,6 @@ describe("Login (Test Suite)", () => {
     // Validate that an error message is displayed
     cy.get(".error-message-container")
       .should("be.visible")
-      .and("contain", "Epic sadface: Username is required");
+      .and("contain", ErrorMessages.sampleMessages.EpicSadFaceUser);
   });
 });

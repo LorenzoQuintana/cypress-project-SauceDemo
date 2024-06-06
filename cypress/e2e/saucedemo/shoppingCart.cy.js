@@ -1,4 +1,5 @@
 const Credentials = require("../../credentials");
+const ErrorMessages = require('../../errorMessages');
 const SampleProduct = require("../../sampleProduct");
 const LoginPage = require("../../pages/loginPage");
 const CartPage = require("../../pages/cartPage");
